@@ -1,6 +1,6 @@
 from sqlmodel import SQLModel, Field, Column
 import sqlalchemy.dialects.postgresql as pg
-from datetime import datetime
+from datetime import date, datetime
 import uuid
 
 
@@ -15,14 +15,14 @@ class Book(SQLModel, table=True):
     title: str
     author: str
     publisher: str
-    publication_date: str
+    publication_date: date
     page_count: int
     language: str
     create_at: datetime = Field(
-        Column(pg.TIMESTAMP(timezone=True), default=datetime.now())
+        sa_column=Column(pg.TIMESTAMP(timezone=True), default=datetime.now())
     )
     update_at: datetime = Field(
-        Column(pg.TIMESTAMP(timezone=True), default=datetime.now())
+        sa_column=Column(pg.TIMESTAMP(timezone=True), default=datetime.now())
     )
 
     def __repr__(self):
