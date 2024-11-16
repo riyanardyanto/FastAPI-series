@@ -18,6 +18,7 @@ class User(SQLModel, table=True):
     first_name: str
     last_name: str
     is_verified: bool = False
+    password_hash: str = Field(exclude=True)
     created_at: datetime = Field(
         default=datetime.now(),
         sa_column=Column(pg.TIMESTAMP(timezone=True), default=datetime.now),
